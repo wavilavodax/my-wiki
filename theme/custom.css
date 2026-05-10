@@ -1,134 +1,198 @@
-/* ===== My Wiki Custom Theme ===== */
-/* Fix mobile sidebar toggle - add smooth animation */
-#sidebar {
-  transition: transform 0.3s ease;
-}
-.sidebar-hidden #sidebar {
-  transform: translateX(-300px);
+/* ===== Apple-style Wiki Theme ===== */
+/* Inspired by Apple design system */
+
+/* Fonts */
+:root {
+  --blue: #0071e3;
+  --blue-dark: #0066cc;
+  --text: #1d1d1f;
+  --text-secondary: rgba(0,0,0,0.8);
+  --text-tertiary: rgba(0,0,0,0.48);
+  --bg-light: #f5f5f7;
+  --bg-white: #ffffff;
+  --border: rgba(0,0,0,0.06);
 }
 
-/* Better Chinese font stack */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   font-size: 16px;
-  line-height: 1.8;
-  color: #1a1a2e;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg-light);
 }
 
-/* Cleaner content area */
+/* Clean page area */
 .page {
   max-width: 780px;
-  padding: 20px 30px;
+  padding: 40px 48px;
+  background: var(--bg-white);
+  border-radius: 12px;
+  margin: 24px auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
-/* Better headings */
-h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; border-bottom: 2px solid #2563eb; padding-bottom: 10px; margin-top: 30px; }
-h2 { font-size: 22px; font-weight: 600; color: #2563eb; margin-top: 28px; }
-h3 { font-size: 18px; font-weight: 600; color: #374151; margin-top: 22px; }
-
-/* Links */
-a { color: #2563eb; text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* Code blocks */
-pre {
-  background: #f3f4f6;
-  border-radius: 8px;
-  padding: 16px;
-  font-size: 14px;
-  overflow-x: auto;
-}
-code {
-  background: #f3f4f6;
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 0.9em;
-  color: #e11d48;
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-  font-size: 14px;
-}
-th {
-  background: #f3f4f6;
+/* Headings - Apple style */
+h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: 40px;
   font-weight: 600;
-  padding: 10px 12px;
-  border: 1px solid #e5e7eb;
-  text-align: left;
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  border: none;
+  padding: 0;
+  margin: 0 0 24px 0;
 }
-td {
-  padding: 8px 12px;
-  border: 1px solid #e5e7eb;
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 32px 0 12px 0;
+  border: none;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 24px 0 8px 0;
 }
 
-/* Blockquotes */
-blockquote {
-  border-left: 4px solid #2563eb;
-  background: #eff6ff;
-  margin: 16px 0;
-  padding: 12px 20px;
-  border-radius: 0 8px 8px 0;
-  color: #1e40af;
+/* Links - Apple Blue */
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-/* Sidebar improvements */
+/* Sidebar - Apple clean dark */
 #sidebar {
-  background: #f8fafc;
-  border-right: 1px solid #e5e7eb;
+  background: #1d1d1f;
+  border: none;
 }
 #sidebar .chapter li a {
-  padding: 6px 16px;
+  color: rgba(255,255,255,0.7);
   font-size: 14px;
-  color: #374151;
-  border-left: 3px solid transparent;
-  transition: all 0.15s ease;
+  padding: 6px 16px;
+  border: none;
+  transition: color 0.15s;
 }
 #sidebar .chapter li a:hover {
-  background: #e5e7eb;
-  border-left-color: #2563eb;
-  color: #2563eb;
+  color: #ffffff;
+  background: rgba(255,255,255,0.08);
 }
 #sidebar .chapter li a.active {
-  background: #eff6ff;
-  border-left-color: #2563eb;
-  color: #2563eb;
-  font-weight: 600;
+  color: #2997ff;
+  background: transparent;
+  font-weight: 500;
+}
+#sidebar .chapter li.part-title {
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Menu bar - Apple glass */
+#menu-bar {
+  background: rgba(29,29,31,0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: none;
+  padding: 0 16px;
+  height: 44px;
+}
+#menu-bar i {
+  color: rgba(255,255,255,0.7);
+}
+#menu-bar i:hover {
+  color: #ffffff;
 }
 
 /* Search bar */
 #searchbar {
   border-radius: 8px;
-  border: 1px solid #d1d5db;
-  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  padding: 6px 12px;
   font-size: 14px;
 }
 
-/* Mobile fixes */
-@media (max-width: 768px) {
-  .page {
-    padding: 16px;
-    max-width: 100%;
-  }
-  h1 { font-size: 22px; }
-  h2 { font-size: 18px; }
-  h3 { font-size: 16px; }
-  table { font-size: 13px; }
-  pre { font-size: 12px; padding: 12px; }
-  #sidebar {
-    width: 280px;
-  }
+/* Tables - Apple clean */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+th {
+  background: var(--bg-light);
+  font-weight: 600;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+  color: var(--text);
+}
+td {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
 }
 
-/* Print hide sidebar toggle on content overlap fix */
-#menu-bar {
-  border-bottom: 1px solid #e5e7eb;
-  background: white;
-  padding: 8px 16px;
+/* Code blocks */
+pre {
+  background: var(--bg-light);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid var(--border);
 }
-#menu-bar i {
-  color: #2563eb;
+code {
+  background: var(--bg-light);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.9em;
+  color: #c7254e;
+}
+
+/* Blockquotes - Apple blue accent */
+blockquote {
+  border-left: 3px solid var(--blue);
+  background: #f0f7ff;
+  margin: 16px 0;
+  padding: 12px 20px;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+}
+
+/* Content images */
+.content img {
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+/* Print button and right sidebar */
+#right-sidebar {
+  background: var(--bg-white);
+  border-left: 1px solid var(--border);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .page {
+    padding: 20px;
+    margin: 8px;
+    border-radius: 8px;
+  }
+  h1 { font-size: 28px; letter-spacing: -0.2px; }
+  h2 { font-size: 20px; }
+  h3 { font-size: 18px; }
+  pre { font-size: 12px; padding: 12px; }
 }
