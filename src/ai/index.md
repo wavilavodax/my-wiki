@@ -13,3 +13,13 @@
 - [LLM Wiki 构建第二大脑](llm-wiki-second-brain.md)
 - [第二大脑概念](second-brain.md)
 - [Karpathy 方法论](karpathy.md)
+
+---
+
+### 分类导航
+
+- [🏠 首页](../index.md)
+- 🤖 **AI 主题** (当前)
+- [📈 量化交易](../quant/index.md)
+- [🛠 开发相关](../dev/index.md)
+- [📰 信息 Digest](../digest/index.md)
