@@ -4,7 +4,11 @@ description = "AI / 量化 / 开发笔记"
 language = "zh-CN"
 
 [output.html]
-smart_punctuation = true
+smart-punctuation = true
 git-repository-url = "https://github.com/wavilavodax/my-wiki"
 additional-css = ["theme/custom.css"]
 no-section-label = true
+
+[output.html.fold]
+enable = true
+level = 1
