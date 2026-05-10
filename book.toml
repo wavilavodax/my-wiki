@@ -7,3 +7,4 @@ language = "zh-CN"
 smart_punctuation = true
 git-repository-url = "https://github.com/wavilavodax/my-wiki"
 additional-css = ["theme/custom.css"]
+no-section-label = true
