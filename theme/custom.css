@@ -1,0 +1,134 @@
+/* ===== My Wiki Custom Theme ===== */
+/* Fix mobile sidebar toggle - add smooth animation */
+#sidebar {
+  transition: transform 0.3s ease;
+}
+.sidebar-hidden #sidebar {
+  transform: translateX(-300px);
+}
+
+/* Better Chinese font stack */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #1a1a2e;
+}
+
+/* Cleaner content area */
+.page {
+  max-width: 780px;
+  padding: 20px 30px;
+}
+
+/* Better headings */
+h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; border-bottom: 2px solid #2563eb; padding-bottom: 10px; margin-top: 30px; }
+h2 { font-size: 22px; font-weight: 600; color: #2563eb; margin-top: 28px; }
+h3 { font-size: 18px; font-weight: 600; color: #374151; margin-top: 22px; }
+
+/* Links */
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Code blocks */
+pre {
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  overflow-x: auto;
+}
+code {
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.9em;
+  color: #e11d48;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+th {
+  background: #f3f4f6;
+  font-weight: 600;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+td {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid #2563eb;
+  background: #eff6ff;
+  margin: 16px 0;
+  padding: 12px 20px;
+  border-radius: 0 8px 8px 0;
+  color: #1e40af;
+}
+
+/* Sidebar improvements */
+#sidebar {
+  background: #f8fafc;
+  border-right: 1px solid #e5e7eb;
+}
+#sidebar .chapter li a {
+  padding: 6px 16px;
+  font-size: 14px;
+  color: #374151;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease;
+}
+#sidebar .chapter li a:hover {
+  background: #e5e7eb;
+  border-left-color: #2563eb;
+  color: #2563eb;
+}
+#sidebar .chapter li a.active {
+  background: #eff6ff;
+  border-left-color: #2563eb;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+/* Search bar */
+#searchbar {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Mobile fixes */
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+    max-width: 100%;
+  }
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+  table { font-size: 13px; }
+  pre { font-size: 12px; padding: 12px; }
+  #sidebar {
+    width: 280px;
+  }
+}
+
+/* Print hide sidebar toggle on content overlap fix */
+#menu-bar {
+  border-bottom: 1px solid #e5e7eb;
+  background: white;
+  padding: 8px 16px;
+}
+#menu-bar i {
+  color: #2563eb;
+}
