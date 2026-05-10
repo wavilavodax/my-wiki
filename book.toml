@@ -1,2 +1,7 @@
 [book]
-title = "test"
+title = "我的知识库"
+description = "AI / 量化 / 开发笔记"
+language = "zh-CN"
+
+[output.html]
+smart_punctuation = true
