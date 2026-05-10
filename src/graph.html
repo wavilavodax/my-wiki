@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识图谱</title>
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif; background: #0f172a; color: white; overflow: hidden; height: 100vh; }
+#graph-container { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; }
+#title { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100; font-size: 18px; font-weight: 600; color: #94a3b8; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+#legend { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 20px; background: rgba(15,23,42,0.85); padding: 10px 24px; border-radius: 30px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #94a3b8; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+#info { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); z-index: 100; font-size: 13px; color: #64748b; text-align: center; pointer-events: none; opacity: 0; transition: opacity 0.5s; }
+#info.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div id="title">知识图谱</div>
+<div id="info">滑鼠滚轮缩放 · 拖拽移动 · 点击节点查看</div>
+<div id="graph-container"></div>
+<div id="legend">
+  <div class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span>AI 主题</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span>量化交易</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>开发相关</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>Digest</div>
+</div>
+<script>
+// === Wiki Graph Data ===
+const pages = {
+  "index": { label: "首页", group: "root" },
+  "ai/README": { label: "AI 主题", group: "ai" },
+  "ai/hallucination-and-rag": { label: "AI 幻觉与 RAG", group: "ai" },
+  "ai/ai-transformation-guide": { label: "AI 转型指南", group: "ai" },
+  "ai/ai-agent-business": { label: "AI 代理商业应用", group: "ai" },
+  "ai/enterprise-ai-guide-2026": { label: "企业 AI 落地指南", group: "ai" },
+  "ai/enterprise-ai-transformation": { label: "企业 AI 转型", group: "ai" },
+  "ai/alibaba-whitepaper-2026": { label: "阿里云白皮书", group: "ai" },
+  "ai/mckinsey-genai-china": { label: "麦肯铭报告", group: "ai" },
+  "ai/llm-wiki-second-brain": { label: "LLM Wiki第二大脑", group: "ai" },
+  "ai/second-brain": { label: "第二大脑概念", group: "ai" },
+  "ai/karpathy": { label: "Karpathy方法论", group: "ai" },
+  "quant/README": { label: "量化交易", group: "quant" },
+  "quant/moss-strategy-design": { label: "Moss策略设计", group: "quant" },
+  "quant/trend-hunter-pro": { label: "趋势猎手Pro", group: "quant" },
+  "quant/range-reaper": { label: "震荡猎手", group: "quant" },
+  "dev/README": { label: "开发相关", group: "dev" },
+  "dev/hermes-multi-agent": { label: "Hermes多智能体", group: "dev" },
+  "dev/prompt-cheatsheet": { label: "Prompt速查", group: "dev" },
+  "dev/fix-checklist": { label: "修复检查", group: "dev" },
+  "dev/obsidian": { label: "Obsidian", group: "dev" },
+  "dev/bidirectional-links": { label: "双向链接", group: "dev" },
+  "digest/README": { label: "Digest", group: "digest" },
+  "digest/digest-concept": { label: "Digest概念", group: "digest" },
+  "digest/info-sources": { label: "信息源清单", group: "digest" }
+};
+
+// Edges: parent-child relationships
+const connections = [
+  ["index", "ai/README"],
+  ["ai/README", "ai/hallucination-and-rag"],
+  ["ai/README", "ai/ai-transformation-guide"],
+  ["ai/README", "ai/ai-agent-business"],
+  ["ai/README", "ai/enterprise-ai-guide-2026"],
+  ["ai/README", "ai/enterprise-ai-transformation"],
+  ["ai/README", "ai/alibaba-whitepaper-2026"],
+  ["ai/README", "ai/mckinsey-genai-china"],
+  ["ai/README", "ai/llm-wiki-second-brain"],
+  ["ai/README", "ai/second-brain"],
+  ["ai/README", "ai/karpathy"],
+  ["index", "quant/README"],
+  ["quant/README", "quant/moss-strategy-design"],
+  ["quant/README", "quant/trend-hunter-pro"],
+  ["quant/README", "quant/range-reaper"],
+  ["index", "dev/README"],
+  ["dev/README", "dev/hermes-multi-agent"],
+  ["dev/README", "dev/prompt-cheatsheet"],
+  ["dev/README", "dev/fix-checklist"],
+  ["dev/README", "dev/obsidian"],
+  ["dev/README", "dev/bidirectional-links"],
+  ["index", "digest/README"],
+  ["digest/README", "digest/digest-concept"],
+  ["digest/README", "digest/info-sources"],
+  // Cross-links
+  ["ai/hallucination-and-rag", "ai/llm-wiki-second-brain"],
+  ["ai/hallucination-and-rag", "ai/enterprise-ai-guide-2026"],
+  ["ai/ai-agent-business", "ai/enterprise-ai-transformation"],
+  ["ai/second-brain", "dev/bidirectional-links"],
+  ["ai/second-brain", "dev/obsidian"],
+  ["dev/bidirectional-links", "dev/obsidian"],
+  ["quant/trend-hunter-pro", "quant/range-reaper"],
+  ["quant/trend-hunter-pro", "quant/moss-strategy-design"],
+];
+
+// Build vis.js graph
+const nodes = new vis.DataSet(
+  Object.entries(pages).map(([id, p]) => ({
+    id, label: p.label, group: p.group,
+    title: `<a href="./${id}.html" style="color:white;text-decoration:none;">${p.label} →</a>`,
+    font: { size: p.group === "root" ? 22 : 14 },
+    size: p.group === "root" ? 35 : 
+          id.endsWith("/README") ? 28 : 20,
+    shape: "dot",
+    borderWidth: 0,
+  }))
+);
+
+const edges = new vis.DataSet(
+  connections.map(([from, to]) => ({
+    from, to,
+    color: { color: "rgba(148,163,184,0.2)", highlight: "rgba(59,130,246,0.6)" },
+    width: 1,
+    smooth: { type: "continuous" },
+  }))
+);
+
+const container = document.getElementById("graph-container");
+const data = { nodes, edges };
+const options = {
+  autoResize: true,
+  physics: {
+    solver: "forceAtlas2Based",
+    forceAtlas2Based: {
+      gravitationalConstant: -80,
+      centralGravity: 0.01,
+      springLength: 180,
+      springConstant: 0.04,
+      damping: 0.6,
+    },
+    stabilization: { iterations: 200 },
+  },
+  groups: {
+    root: { color: { background: "#f8fafc", border: "#f8fafc" } },
+    ai: { color: { background: "#3b82f6", border: "#3b82f6" } },
+    quant: { color: { background: "#10b981", border: "#10b981" } },
+    dev: { color: { background: "#f59e0b", border: "#f59e0b" } },
+    digest: { color: { background: "#8b5cf6", border: "#8b5cf6" } },
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    zoomView: true,
+    dragView: true,
+  },
+  nodes: {
+    shadow: {
+      enabled: true,
+      color: "rgba(0,0,0,0.3)",
+      size: 10,
+    },
+    font: { color: "#e2e8f0", face: "PingFang SC, Noto Sans SC, sans-serif" },
+  },
+  edges: { smooth: { type: "continuous" } },
+  background: "#0f172a",
+};
+
+const network = new vis.Network(container, data, options);
+network.on("click", function(params) {
+  if (params.nodes.length > 0) {
+    const id = params.nodes[0];
+    if (id !== "index") {
+      window.location.href = `./${id}.html`;
+    }
+  }
+});
+
+network.on("stabilizationProgress", function() {
+  document.getElementById("info").classList.add("show");
+  setTimeout(() => document.getElementById("info").classList.remove("show"), 3000);
+});
+</script>
+</body>
+</html>
