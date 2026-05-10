@@ -8,6 +8,7 @@ smart-punctuation = true
 git-repository-url = "https://github.com/wavilavodax/my-wiki"
 no-section-label = true
 default-theme = "light"
+preferred-dark-theme = "light"
 
 [output.html.fold]
 enable = true
