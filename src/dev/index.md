@@ -8,3 +8,13 @@ Hermes Agent 配置、工具使用、Prompt 速查等。
 - [修复检查清单](fix-checklist.md)
 - [Obsidian](obsidian.md)
 - [双向链接](bidirectional-links.md)
+
+---
+
+### 分类导航
+
+- [🏠 首页](../index.md)
+- [🤖 AI 主题](../ai/index.md)
+- [📈 量化交易](../quant/index.md)
+- 🛠 **开发相关** (当前)
+- [📰 信息 Digest](../digest/index.md)
