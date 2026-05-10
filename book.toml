@@ -9,10 +9,8 @@ git-repository-url = "https://github.com/wavilavodax/my-wiki"
 additional-css = ["theme/custom.css"]
 no-section-label = true
 
-# Only light theme — no dark, no toggle
-theme = "light"
+# 默认 light 主题，但保留主题切换能力
 default-theme = "light"
-preferred-dark-theme = "light"
 
 [output.html.fold]
 enable = true
