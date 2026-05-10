@@ -1,128 +1,150 @@
-/* ===== Apple-style Wiki Theme ===== */
-/* Inspired by Apple design system */
+/* ===== Apple White Theme - Force all white ===== */
 
-/* Fonts */
+/* Override ALL mdBook built-in variables */
 :root {
-  --blue: #0071e3;
-  --blue-dark: #0066cc;
-  --text: #1d1d1f;
-  --text-secondary: rgba(0,0,0,0.8);
-  --text-tertiary: rgba(0,0,0,0.48);
+  --blue: #0071e3 !important;
+  --text: #1d1d1f !important;
+  --text-secondary: rgba(0,0,0,0.8) !important;
+  --bg: #ffffff !important;
+  --sidebar-bg: #f5f5f7 !important;
+  --sidebar-fg: #1d1d1f !important;
+  --sidebar-non-existant: #999 !important;
+  --sidebar-active: #0071e3 !important;
+  --sidebar-spacer: #e5e5e5 !important;
+  --scrollbar: #ccc !important;
+  --icons: #666 !important;
+  --icons-hover: #333 !important;
+  --links: #0071e3 !important;
+  --inline-code-color: #c7254e !important;
+  --theme-popup-bg: #fafafa !important;
+  --theme-popup-border: #ddd !important;
+  --theme-hover: #e8e8e8 !important;
+  --quote-bg: #f0f7ff !important;
+  --quote-border: #0071e3 !important;
+  --table-border-color: #e5e5e5 !important;
+  --table-header-bg: #f5f5f7 !important;
+  --table-alternate-bg: #fafafa !important;
+  --searchbar-border-color: #ddd !important;
+  --searchbar-bg: #f5f5f7 !important;
+  --searchbar-fg: #1d1d1f !important;
+  --searchbar-shadow-color: transparent !important;
+  --searchresults-header-fg: #666 !important;
+  --searchresults-border-color: #ddd !important;
+  --searchresults-li-bg: #fafafa !important;
+  --search-mark-bg: #fff3a8 !important;
+
   --bg-light: #f5f5f7;
-  --bg-white: #ffffff;
-  --border: rgba(0,0,0,0.06);
+  --border-color: #e5e5e5;
+}
+
+/* Force EVERYTHING to white background */
+html, body, .page, .content, main, #content, article {
+  background: #ffffff !important;
+  color: #1d1d1f !important;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: var(--text);
-  background: var(--bg-light);
 }
 
-/* Clean page area */
+/* Page area - white card on light gray */
 .page {
   max-width: 780px;
   padding: 40px 48px;
-  background: var(--bg-white);
-  border-radius: 12px;
-  margin: 24px auto;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  margin: 0 auto;
+  background: #ffffff !important;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* Headings - Apple style */
+/* Headings */
 h1 {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
   font-size: 40px;
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.3px;
-  color: var(--text);
-  border: none;
-  padding: 0;
-  margin: 0 0 24px 0;
+  color: #1d1d1f !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 0 24px 0 !important;
+  background: transparent !important;
 }
 h2 {
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.2;
-  color: var(--text);
-  margin: 32px 0 12px 0;
-  border: none;
+  color: #1d1d1f !important;
+  border: none !important;
+  margin: 32px 0 12px 0 !important;
+  background: transparent !important;
 }
 h3 {
   font-size: 20px;
   font-weight: 600;
-  line-height: 1.3;
-  color: var(--text);
-  margin: 24px 0 8px 0;
+  color: #1d1d1f !important;
+  margin: 24px 0 8px 0 !important;
 }
 
-/* Links - Apple Blue */
-a {
-  color: var(--blue);
-  text-decoration: none;
+/* Links */
+a, a:visited, .content a {
+  color: #0071e3 !important;
+  text-decoration: none !important;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
-/* Sidebar - Apple clean dark */
+/* Sidebar - light gray, clean */
 #sidebar {
-  background: #1d1d1f;
-  border: none;
+  background: #f5f5f7 !important;
+  border-right: 1px solid #e5e5e5 !important;
 }
 #sidebar .chapter li a {
-  color: rgba(255,255,255,0.7);
+  color: #1d1d1f !important;
   font-size: 14px;
-  padding: 6px 16px;
-  border: none;
-  transition: color 0.15s;
+  padding: 6px 16px !important;
+  border-left: 3px solid transparent !important;
 }
 #sidebar .chapter li a:hover {
-  color: #ffffff;
-  background: rgba(255,255,255,0.08);
+  background: #e8e8e8 !important;
 }
 #sidebar .chapter li a.active {
-  color: #2997ff;
-  background: transparent;
-  font-weight: 500;
+  color: #0071e3 !important;
+  border-left-color: #0071e3 !important;
+  font-weight: 500 !important;
+  background: transparent !important;
 }
 #sidebar .chapter li.part-title {
-  color: rgba(255,255,255,0.4);
-  font-size: 11px;
+  color: #666 !important;
+  font-size: 11px !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-/* Menu bar - Apple glass */
+/* Menu bar - white */
 #menu-bar {
-  background: rgba(29,29,31,0.92);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border: none;
+  background: rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e5e5 !important;
   padding: 0 16px;
   height: 44px;
 }
-#menu-bar i {
-  color: rgba(255,255,255,0.7);
-}
-#menu-bar i:hover {
-  color: #ffffff;
+#menu-bar i, #menu-bar i:hover {
+  color: #666 !important;
 }
 
-/* Search bar */
+/* Search */
 #searchbar {
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.08);
-  color: white;
-  padding: 6px 12px;
-  font-size: 14px;
+  border: 1px solid #ddd !important;
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
 }
 
-/* Tables - Apple clean */
+/* Tables - clean white */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -130,69 +152,71 @@ table {
   font-size: 14px;
   border-radius: 8px;
   overflow: hidden;
+  background: #ffffff !important;
 }
 th {
-  background: var(--bg-light);
+  background: #f5f5f7 !important;
   font-weight: 600;
   padding: 10px 14px;
-  border: 1px solid var(--border);
-  text-align: left;
-  color: var(--text);
+  border: 1px solid #e5e5e5 !important;
+  color: #1d1d1f !important;
 }
 td {
   padding: 8px 14px;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
+  border: 1px solid #e5e5e5 !important;
+  color: #1d1d1f !important;
+  background: #ffffff !important;
 }
 
-/* Code blocks */
+/* Code - clean */
 pre {
-  background: var(--bg-light);
+  background: #f5f5f7 !important;
   border-radius: 8px;
-  padding: 16px 20px;
+  padding: 16px 20px !important;
   font-size: 13px;
-  line-height: 1.5;
-  border: 1px solid var(--border);
+  border: 1px solid #e5e5e5 !important;
+  color: #1d1d1f !important;
 }
 code {
-  background: var(--bg-light);
+  background: #f5f5f7 !important;
   border-radius: 4px;
   padding: 2px 6px;
   font-size: 0.9em;
-  color: #c7254e;
+  color: #c7254e !important;
+}
+/* Code highlighting - force light theme */
+.hljs, .hljs * {
+  background: transparent !important;
+  color: #1d1d1f !important;
 }
 
-/* Blockquotes - Apple blue accent */
+/* Blockquotes */
 blockquote {
-  border-left: 3px solid var(--blue);
-  background: #f0f7ff;
+  border-left: 3px solid #0071e3 !important;
+  background: #f0f7ff !important;
   margin: 16px 0;
   padding: 12px 20px;
   border-radius: 0 8px 8px 0;
-  color: var(--text-secondary);
+  color: rgba(0,0,0,0.8) !important;
 }
 
-/* Content images */
-.content img {
-  border-radius: 8px;
-  max-width: 100%;
-}
-
-/* Print button and right sidebar */
+/* Sidebar toggle button and right sidebar */
 #right-sidebar {
-  background: var(--bg-white);
-  border-left: 1px solid var(--border);
+  background: #ffffff !important;
+  border-left: 1px solid #e5e5e5 !important;
+}
+
+/* Hide theme selector (we only use light) */
+#theme-toggle, .theme-popup {
+  display: none !important;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .page {
-    padding: 20px;
-    margin: 8px;
-    border-radius: 8px;
+    padding: 20px !important;
+    margin: 0 !important;
   }
-  h1 { font-size: 28px; letter-spacing: -0.2px; }
-  h2 { font-size: 20px; }
-  h3 { font-size: 18px; }
-  pre { font-size: 12px; padding: 12px; }
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 20px !important; }
 }
